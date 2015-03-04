@@ -1,0 +1,80 @@
+{% extends 'base.twig' %}
+{% block title %}Dashboard :: {% endblock %}
+{% block content %}
+    <div class="container">
+
+        <div class="row dashboard">
+            {% if user.profile_complete < 100 %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    {% include 'members.dashboard_blocks.profile_complete' %}
+                </div>
+            {% endif %}
+            <!--<div class="col-lg-3 col-md-4 col-sm-6">
+                {% include 'members.dashboard_blocks.calendar' %}
+            </div>-->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                {% include 'members.dashboard_blocks.stats' %}
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                {% include 'members.dashboard_blocks.meal_plan' %}
+            </div>
+            <!--<div class="col-lg-3 col-md-4 col-sm-6">
+                {% include 'members.dashboard_blocks.wom' %}
+            </div>-->
+            {% if user.profile_complete >= 100 %}
+                <div class="hidden-lg col-md-4 hidden-sm hidden-xs">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Advertisement
+                        </div>
+                        <div class="panel-body">
+                            <div class="advert">
+                                <div id="shed_pounds_22699"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                {% include 'members.dashboard_blocks.friends' %}
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                {% include 'members.dashboard_blocks.journal' %}
+            </div>
+            <!--<div class="col-lg-6 col-md-8 col-sm-6">
+                {% include 'members.dashboard_blocks.messages' %}
+            </div>-->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                {% include 'members.dashboard_blocks.trainers' %}
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-6">
+                {% include 'members.dashboard_blocks.articles' %}
+            </div>
+            {% if assessments.payload %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    {% include 'members.dashboard_blocks.before_after' %}
+                </div>
+            {% else %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Advertisement
+                        </div>
+                        <div class="panel-body">
+                            <div class="advert">
+                                <div id="shed_pounds_22698"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        var profile_complete = {{ user.profile_complete }};
+    </script>
+    <script src="/js/charts/Chart.min.js"></script>
+    <script src="/js/charts/dashboard_chart.js"></script>
+{% endblock %}
